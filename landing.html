@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Поздравление с 14 февраля</title>
+    <style>
+        body {
+            background-color: pink;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .heart {
+            position: absolute;
+            animation: float 10s linear infinite;
+            font-size: 50px;
+        }
+
+        @keyframes float {
+            0% {
+                top: 100%;
+                left: 50%;
+            }
+            100% {
+                top: -10%;
+                left: calc(100% * random());
+            }
+        }
+
+        .container {
+            text-align: center;
+            z-index: 10;
+        }
+
+        .form-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: inline-block;
+        }
+
+        .form-container h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .form-container button {
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+            margin: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #ff69b4;
+            color: white;
+            transition: background-color 0.3s;
+        }
+
+        .form-container button:hover {
+            background-color: #ff1493;
+        }
+
+        .message {
+            font-size: 20px;
+            color: #ff69b4;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="form-container">
+        <h1>Ты меня любишь?</h1>
+        <button id="yesBtn">Да</button>
+        <button id="noBtn">Нет</button>
+    </div>
+    <div class="message" id="message"></div>
+</div>
+
+<script>
+    // Функция генерации случайных сердечек
+    function generateHearts() {
+        const heartCount = 20; // Количество сердечек
+        for (let i = 0; i < heartCount; i++) {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.textContent = '❤️';
+            heart.style.left = Math.random() * 100 + '%';
+            heart.style.animationDuration = Math.random() * 5 + 5 + 's'; // случайное время анимации
+            document.body.appendChild(heart);
+        }
+    }
+
+    // Обработчики для кнопок
+    document.getElementById('yesBtn').addEventListener('click', function() {
+        document.getElementById('message').textContent = "Я тоже тебя очень люблю, с 14 февраля, моя Киса!";
+        document.getElementById('noBtn').style.display = 'none'; // Скрыть кнопку "Нет"
+    });
+
+    document.getElementById('noBtn').addEventListener('click', function() {
+        document.getElementById('noBtn').style.display = 'none'; // Скрыть кнопку "Нет"
+        alert("Что-то пошло не так, попробуйте еще раз и хорошо подумайте.");
+    });
+
+    // Генерация сердечек при загрузке страницы
+    generateHearts();
+</script>
+
+</body>
+</html>
